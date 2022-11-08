@@ -6,27 +6,29 @@ import java.nio.charset.Charset;
 public class EjercicioCodificarCodigo {
     public static void main(String[] args) throws FileNotFoundException,
             IOException {
-        String file = "fichero.txt";
+        String file = "C:\\Users\\Bruno\\Documents\\Ejercicios\\fichero.txt";
         //Se crean las variables para poder contar los caracteres
         long contador_lineas = 0, contador_caracteres = 0, contador_palabras = 0;
         BufferedReader reader = new BufferedReader(
                 new InputStreamReader(
                         new FileInputStream(file),
                         Charset.forName("UTF-8")));
-        int c, anterior = ' ';
+        int c, n = 0, anterior = ' ';
         //A partir de aquí, empieza a leer el archivo
         while ((c = reader.read()) != -1) {
             char character = (char) c;
             contador_caracteres++;
             //si el texto se corresponde con el predicado, se añadirá 1 a contador de palabras
             if (character == '\n') {
+                contador_lineas++;
             }
             if ((anterior == ' ' || anterior == '\t' || anterior == '\n') && (character != ' ' || character == '\t' || character == '\n')) {
                 contador_palabras++;
             }
             anterior = c;
         }
-        System.out.println("En el ficheor existes: " + contador_palabras + " palabras, n líneas y c caracteres");
+
+        System.out.println("En el fichero existes: " + contador_palabras + " palabras, "+ contador_lineas +" líneas y "+ contador_caracteres +" caracteres");
     }
 }
 /*1.La forma de codificar el código es muy mala, debido a que no es legible y cuesta mucho analizarlo
